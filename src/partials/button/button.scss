@@ -7,9 +7,32 @@
   justify-content: center;
   border: none;
   border-radius: 8px;
+  cursor: pointer;
+  margin: 0 auto;
 
   &_blue {
     background: #3369F3;
     color: #fff;
+  }
+
+  &_mr-t-160 {
+    margin-top: 160px;
+  }
+
+  &_mr-t-47 {
+    margin-top: 47px;
+  }
+
+  &_arrow {
+    background: url('../../images/arrow-back.svg');
+    background-repeat: no-repeat;
+    background-position: 50% 50%;
+    max-width: 65px;
+    width: 100%;
+    padding: 0 18px;
+    background-color: #FBFBFB;
+    border-right: 1px solid #EAEAEA;
+    margin: 0;
+    border-radius: 0;
   }
 }
