@@ -34,5 +34,23 @@
   &__links {
     display: flex;
     flex-direction: column;
+    max-width: 510px;
+    width: 100%;
+    row-gap: 10px;
   }
+
+  &__link {
+    margin: 0;
+    border-bottom: 1px solid #EAEAEA;
+    font-weight: 500;
+    font-size: 13px;
+    line-height: 13px;
+    padding-bottom: 10px;
+
+    &_logout {
+      border-bottom: none;
+      color: #FF0000;
+    }
+  }
+
 }

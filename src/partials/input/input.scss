@@ -6,8 +6,7 @@
   font-family: 'Inter', sans-serif;
   font-style: normal;
   font-weight: 500;
-  font-size: 13px;
-  line-height: 13px;
+  font-size: 15px;
   color: #1E1E1E;
   margin: 0 auto;
   margin-bottom: 16px;
@@ -17,9 +16,7 @@
     outline: none;
   }
 
-
-
-  &:disabled {
+  &_disabled {
     background: transparent;
     border-bottom: 1px solid #EAEAEA;
     text-align: end;
@@ -34,11 +31,4 @@
     line-height: 9px;
     color: #999999;
   }
-}
-
-input::placeholder {
-  font-weight: 500;
-  font-size: 13px;
-  line-height: 13px;
-  color: #999999;
 }

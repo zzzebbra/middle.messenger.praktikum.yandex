@@ -25,8 +25,9 @@
       </div>
     </div>
     <div class="profile__links">
-      {{> link url='/data-change' urlName="Change profile info"}}
-      {{> link url='/pass-change' urlName="Change password"}}
+      {{> link url='/data-change' urlName="Change profile info" extraClass="profile__link"}}
+      {{> link url='/pass-change' urlName="Change password" extraClass="profile__link"}}
+      {{> link url='/login' urlName="Logout" extraClass="profile__link profile__link_logout"}}
     </div>
   </div>
 </div>
