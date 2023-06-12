@@ -17,3 +17,5 @@
 /500 - ошибка сервера  
 
 [Макет проекта](https://www.figma.com/file/EnLlSkgZC06gpgTbByEL4B/Chat_external_link-(Copy)?type=design&node-id=0%3A1&t=AapTjkAAnDb0Qa0J-1)
+
+[Netlify](https://deploy--flourishing-biscotti-d57876.netlify.app/)
