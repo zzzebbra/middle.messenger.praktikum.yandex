@@ -1,6 +1,6 @@
 <div class="profile">
-  {{> button buttonExtraClass="button_arrow"}}
-  <div class="profile__info">
+  {{> button buttonExtraClass="button_arrow" type="button"}}
+  <form class="profile__info">
     <div class="profile__avatar-info">
       {{> avatar link="/src/images/avatar.png"}}
       {{> profileTitle title="Ivan"}}
@@ -29,5 +29,5 @@
       {{> link url='/pass-change' urlName="Change password" extraClass="profile__link"}}
       {{> link url='/login' urlName="Logout" extraClass="profile__link profile__link_logout"}}
     </div>
-  </div>
+  </form>
 </div>

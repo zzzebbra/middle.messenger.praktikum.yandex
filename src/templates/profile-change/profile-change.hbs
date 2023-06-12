@@ -1,6 +1,6 @@
 <div class="profile">
-  {{> button buttonExtraClass="button_arrow"}}
-  <div class="profile__info">
+  {{> button buttonExtraClass="button_arrow" type="button"}}
+  <form class="profile__info">
     <div class="profile__avatar-info">
       {{> avatar link="/src/images/avatar.png"}}
       {{> profileTitle title="Ivan"}}
@@ -24,6 +24,6 @@
         {{> input name="phone" type="tel" extraClass="input_disabled" placeholder="+7(909)9673030"}}
       </div>
     </div>
-    {{> button buttonText="Save changes" buttonExtraClass="button_blue"}}
-  </div>
+    {{> button buttonText="Save changes" buttonExtraClass="button_blue" type="submit"}}
+  </form>
 </div>
