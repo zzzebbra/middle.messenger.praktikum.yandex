@@ -27,7 +27,7 @@ Handlebars.registerPartial('profileText', profileText);
 document.addEventListener('DOMContentLoaded', () => {
   const root = document.querySelector('#app');
 
-  root.innerHTML = '';
+  root!.innerHTML = '';
 
   const mainPage = main();
   const registrationPage = registration();
@@ -41,22 +41,22 @@ document.addEventListener('DOMContentLoaded', () => {
   const getCurrentPage = () => {
     switch (window.location.pathname) {
       case '/login':
-        return root.innerHTML = loginPage;
+        return root!.innerHTML = loginPage;
       case '/join-us':
-        return root.innerHTML = registrationPage;
+        return root!.innerHTML = registrationPage;
       case '/profile':
-        return root.innerHTML = profilePage;
+        return root!.innerHTML = profilePage;
       case '/data-change':
-        return root.innerHTML = profileChangePage;
+        return root!.innerHTML = profileChangePage;
       case '/pass-change':
-        return root.innerHTML = passwordChangePage;
+        return root!.innerHTML = passwordChangePage;
       case '/404':
-        return root.innerHTML = notFoundPage;
+        return root!.innerHTML = notFoundPage;
       case '/500':
-        return root.innerHTML = serverErrorPage;
+        return root!.innerHTML = serverErrorPage;
 
       default:
-        return root.innerHTML = mainPage;
+        return root!.innerHTML = mainPage;
     }
   }
 

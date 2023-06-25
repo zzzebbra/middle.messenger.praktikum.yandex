@@ -1,3 +1,12 @@
+import EventBus from "./EventBus";
+
+type Meta = {
+  tagName: string,
+   props: {}
+}
+
+type Props = Record<string, any>;
+
 class Block {
   static EVENTS = {
     INIT: "init",
@@ -6,17 +15,11 @@ class Block {
     FLOW_RENDER: "flow:render",
   };
 
-  _element = null;
-  _meta: {tagName: string, props: {}} | null = null;
-  props: {};
+  _element: HTMLElement | null = null;
+  _meta:  Meta | null = null;
+  props: Props;
   eventBus: () => EventBus;
 
-  /** JSDoc
-     * @param {string} tagName
-     * @param {Object} props
-     *
-     * @returns {void}
-     */
   constructor(tagName: string = "div", props: object = {}) {
     const eventBus = new EventBus();
     this._meta = {
@@ -40,7 +43,7 @@ class Block {
   }
 
   _createResources() {
-    const { tagName } = this._meta;
+    const tagName  = this._meta?.tagName;
     this._element = this._createDocumentElement(tagName);
   }
 
@@ -89,11 +92,13 @@ class Block {
     // Используйте шаблонизатор из npm или напишите свой безопасный
     // Нужно не в строку компилировать (или делать это правильно),
     // либо сразу в DOM-элементы возвращать из compile DOM-ноду
-    this._element.innerHTML = block;
+    this._element!.innerHTML = block;
   }
 
   // Может переопределять пользователь, необязательно трогать
-  render() { }
+  render() {
+    return ""
+   }
 
   getContent() {
     return this.element;
@@ -130,10 +135,10 @@ class Block {
   }
 
   show() {
-    this.getContent().style.display = "block";
+    this.getContent()!.style.display = "block";
   }
 
   hide() {
-    this.getContent().style.display = "none";
+    this.getContent()!.style.display = "none";
   }
 }
