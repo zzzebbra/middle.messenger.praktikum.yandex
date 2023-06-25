@@ -1,0 +1,16 @@
+@import './fonts/fonts.scss';
+@import './partials/button/button.scss';
+@import './partials/input/input.scss';
+@import './partials/link/link.scss';
+@import './templates/login/login.scss';
+@import './partials/modalTitle/modalTitle.scss';
+@import './partials/profileTitle/profileTitle.scss';
+@import './templates/profile/profile.scss';
+@import './partials/avatar/avatar.scss';
+@import './partials/profileText/profileText.scss';
+@import './templates/404/404.scss';
+@import './templates/500/500.scss';
+
+body {
+  margin: 0;
+}

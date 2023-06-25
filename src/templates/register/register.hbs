@@ -1,0 +1,14 @@
+<div class="login">
+  <form class="login__form">
+    {{> modalTitle title="Create a profile"}}
+    {{> input name="email" type="email" labelName="Email"}}
+    {{> input name="login" type="text" labelName="Login"}}
+    {{> input name="first_name" type="text" labelName="Name"}}
+    {{> input name="second_name" type="text" labelName="Surname"}}
+    {{> input name="phone" type="tel" labelName="Mobile phone"}}
+    {{> input name="password" type="password" labelName="Password"}}
+    {{> input name="password-repeat" type="password" labelName="Password (repeat)"}}
+    {{> button buttonText="Sign up" buttonExtraClass="button_blue button_mr-t-47" type="submit"}}
+    {{> link url='/login' urlName="Login"}}
+  </form>
+</div>

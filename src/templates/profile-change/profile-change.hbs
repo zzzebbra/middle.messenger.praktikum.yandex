@@ -1,0 +1,29 @@
+<div class="profile">
+  {{> button buttonExtraClass="button_arrow" type="button"}}
+  <form class="profile__info">
+    <div class="profile__avatar-info">
+      {{> avatar link="/src/images/avatar.png"}}
+      {{> profileTitle title="Ivan"}}
+    </div>
+    <div class="profile__data">
+      <div class="profile__texts">
+        {{> profileText text="Email"}}
+        {{> profileText text="Login"}}
+        {{> profileText text="Name"}}
+        {{> profileText text="Surname"}}
+        {{> profileText text="Chatname"}}
+        {{> profileText text="Mobile phone"}}
+      </div>
+      <div class="profile__inputs">
+        {{> input name="email" type="email" extraClass="input_disabled"
+        placeholder="pochta@gmail.com"}}
+        {{> input name="login" type="text" extraClass="input_disabled" placeholder="ivanivanov"}}
+        {{> input name="first_name" type="text" extraClass="input_disabled" placeholder="Ivan"}}
+        {{> input name="second_name" type="text" extraClass="input_disabled" placeholder="Ivanov"}}
+        {{> input name="display_name" type="text" extraClass="input_disabled" placeholder="Ivan"}}
+        {{> input name="phone" type="tel" extraClass="input_disabled" placeholder="+7(909)9673030"}}
+      </div>
+    </div>
+    {{> button buttonText="Save changes" buttonExtraClass="button_blue" type="submit"}}
+  </form>
+</div>
