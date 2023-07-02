@@ -190,7 +190,7 @@ class Block {
 
         // eslint-disable-next-line no-param-reassign
         target[prop as keyof P] = value;
-        // @ts-expect-error
+        // @ts-expect-error - нет такого в хендлере прокси, но оно необходимо
         this.eventBus().emit(Block.EVENTS.FLOW_CDU, oldTarget, target);
 
         return true;
