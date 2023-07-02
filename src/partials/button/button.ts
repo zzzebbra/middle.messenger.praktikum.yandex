@@ -6,7 +6,7 @@ type TButtonProps = {
   type: string,
   buttonExtraClass?: string,
   events: {
-    click: () => void;
+    click: (e: Event) => void;
   }
 }
 

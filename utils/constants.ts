@@ -5,6 +5,7 @@ import { ModalTitle } from '../src/partials/modalTitle/modalTitle';
 import { Avatar } from '../src/partials/avatar/avatar';
 import { ProfileTitle } from "../src/partials/profileTitle/profileTitle";
 import { ProfileText } from "../src/partials/profileText/profileText";
+import { Image } from '../src/partials/image/image';
 
 export const linkToMain = new Link({
   url: '/',
@@ -44,7 +45,10 @@ export const buttonSubmitLogin = new Button({
   type: 'submit',
   buttonExtraClass: 'button_blue button_mr-t-160',
   events: {
-    click: () => console.log('sign in'),
+    click: (e: Event) => {
+      e.preventDefault();
+      console.log('sign in');
+    }
   }
 })
 
@@ -379,4 +383,36 @@ export const newPasswordRepeat = new Input({
   }
 })
 
+export const linkToProfile = new Link({
+  url: '/profile',
+  urlName: 'Profile',
+  extraClass: 'chatWindow__link',
+  events: {
+    click: () => console.log('clicked'),
+  }
+})
 
+export const arrowProfile = new Button({
+  type: 'button',
+  buttonExtraClass: 'chatWindow__image',
+  events: {
+    click: () => console.log('go back'),
+  }
+})
+
+export const searchChatsInput = new Input({
+  type: 'text',
+  name: 'search',
+  extraClass: "chatWindow__search",
+  placeholder: "Search",
+  events: {
+    click: () => console.log('search'),
+  }
+})
+
+export const image = new Image({
+  link: '/src/images/avatar.png',
+  events: {
+    click: () => console.log('avatar'),
+  }
+})

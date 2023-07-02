@@ -13,9 +13,10 @@ import { linkToMain, modalTitleLogin, loginInputEnabled, passwordInput, buttonSu
   emailInputDisabled, loginInputDisabled, nameInputDisabled, surnameInputDisabled,  displayNameInputDisabled,
   phoneInputDisabled, buttonArrow, dataChangeLink, passChangeLink, logoutLink, emailInputEnabledWithPlaceholder,
   loginInputEnabledWithPlaceholder, namenInputEnabledWithPlaceholder, surnameInputEnabledWithPlaceholder,
-  displayNameInputEnabledWithPlaceholder, phoneInputEnabledWithPlaceholder, buttonSave, oldPassword, newPassword, newPasswordRepeat,
+  displayNameInputEnabledWithPlaceholder, phoneInputEnabledWithPlaceholder, buttonSave, oldPassword, newPassword, newPasswordRepeat, linkToProfile, arrowProfile, searchChatsInput,
 
  } from '../utils/constants'
+import { ChatWindowPage } from './templates/chatWindow/chatWindow';
 
 const renderDOM = (page, props: Record<string, unknown>) => {
   window.addEventListener('DOMContentLoaded', () => {
@@ -55,7 +56,7 @@ const getCurrentPage = () => {
       return renderDOM(ServerErrorPage, { linkToMain });
 
     default:
-      return renderDOM(NotFoundPage, { linkToMain });
+      return renderDOM(ChatWindowPage, { linkToProfile, arrowProfile, searchChatsInput });
   }
 }
 
