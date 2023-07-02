@@ -1,79 +1,113 @@
 import EventBus from "./EventBus";
+import { nanoid } from 'nanoid';
 
-type Meta = {
-  tagName: string,
-   props: {}
-}
-
-type Props = Record<string, any>;
-
-class Block {
+class Block<P extends Record<string, unknown> = any> {
   static EVENTS = {
     INIT: "init",
     FLOW_CDM: "flow:component-did-mount",
     FLOW_CDU: "flow:component-did-update",
     FLOW_RENDER: "flow:render",
-  };
+  } as const;
 
-  _element: HTMLElement | null = null;
-  _meta:  Meta | null = null;
-  props: Props;
-  eventBus: () => EventBus;
+  public id = nanoid(6);
+  private _element: HTMLElement | null = null;
+  private _meta: { tagName: string, props: P }
+  protected props: P;
+  private eventBus: () => EventBus;
+  public children: Record<string, Block>
 
-  constructor(tagName: string = "div", props: object = {}) {
+  constructor(tagName: string = "div", propsWithChildren: P) {
     const eventBus = new EventBus();
+
+    const { props, children } = this._getChildrenAndProps(propsWithChildren);
+
     this._meta = {
       tagName,
-      props
+      props: props as P
     };
 
+    this.children = children;
     this.props = this._makePropsProxy(props);
 
     this.eventBus = () => eventBus;
 
     this._registerEvents(eventBus);
-    eventBus.emit(Block.EVENTS.INIT);
-  }
 
-  _registerEvents(eventBus) {
-    eventBus.on(Block.EVENTS.INIT, this.init.bind(this));
+    eventBus.emit(Block.EVENTS.INIT);
+  };
+
+  _getChildrenAndProps(childrenAndProps: P): { props: P, children: Record<string, Block> } {
+    const props: Record<string, unknown> = {};
+    const children: Record<string, Block> = {};
+
+    Object.entries(childrenAndProps).forEach(([key, value]) => {
+      if (value instanceof Block) {
+        children[key as string] = value;
+      } else {
+        props[key] = value;
+      }
+    })
+
+    return { props: props as P, children }
+  };
+
+  _addEvents() {
+    const { events = {} } = this.props as P & { events: Record<string, () => void> };
+
+    Object.keys(events).forEach((eventName) => {
+      this._element?.addEventListener(eventName, events[eventName])
+    })
+  };
+
+  _registerEvents(eventBus: EventBus) {
+    eventBus.on(Block.EVENTS.INIT, this._init.bind(this));
     eventBus.on(Block.EVENTS.FLOW_CDM, this._componentDidMount.bind(this));
     eventBus.on(Block.EVENTS.FLOW_CDU, this._componentDidUpdate.bind(this));
     eventBus.on(Block.EVENTS.FLOW_RENDER, this._render.bind(this));
-  }
+  };
 
   _createResources() {
-    const tagName  = this._meta?.tagName;
+    const tagName = this._meta?.tagName;
     this._element = this._createDocumentElement(tagName);
-  }
+  };
 
-  init() {
+  private _init() {
     this._createResources();
-    this.eventBus().emit(Block.EVENTS.FLOW_RENDER);
-  }
+
+    this.init();
+
+    this.eventBus().emit(Block.EVENTS.FLOW_RENDER)
+  };
+
+  protected init() {
+    // this._createResources();
+    // this.eventBus().emit(Block.EVENTS.FLOW_RENDER);
+  };
 
   _componentDidMount() {
     this.componentDidMount({});
-  }
+  };
 
   // Может переопределять пользователь, необязательно трогать
   componentDidMount(oldProps: {}) { }
 
-  dispatchComponentDidMount() {
+  public dispatchComponentDidMount() {
     this.eventBus().emit(Block.EVENTS.FLOW_CDM);
-  }
+    Object.values(this.children).forEach((child) => {child.dispatchComponentDidMount()})
+  };
 
-  _componentDidUpdate(oldProps, newProps) {
-    const response = this.componentDidUpdate(oldProps, newProps);
-    this.eventBus().emit(Block.EVENTS.FLOW_RENDER);
-  }
+  private _componentDidUpdate(oldProps: P, newProps: P) {
+    if (this.componentDidUpdate(oldProps, newProps)) {
+      this.eventBus().emit(Block.EVENTS.FLOW_RENDER);
+    }
+  };
 
   // Может переопределять пользователь, необязательно трогать
-  componentDidUpdate(oldProps, newProps) {
+  componentDidUpdate(oldProps:P, newProps: P) {
     return true;
-  }
+  };
 
-  setProps = nextProps => {
+  setProps = (nextProps:P) => {
     if (!nextProps) {
       return;
     }
@@ -84,61 +118,91 @@ class Block {
 
   get element() {
     return this._element;
-  }
+  };
 
   _render() {
     const block = this.render();
-    // Этот небезопасный метод для упрощения логики
-    // Используйте шаблонизатор из npm или напишите свой безопасный
-    // Нужно не в строку компилировать (или делать это правильно),
-    // либо сразу в DOM-элементы возвращать из compile DOM-ноду
-    this._element!.innerHTML = block;
+
+    this._element!.innerHTML = '';
+
+    this._element!.append(block);
+
+    this._addEvents();
+  };
+
+  protected compile(template: (context: Record<string, unknown>)=> string , context: Record<string, unknown>) {
+    const contextAndStubs = { ...context };
+
+    Object.entries(this.children).forEach(([name, component]) => {
+      // тут в component может быть не инстанс блока, а массив инстансов блока, соответственно, нужно переписать так, чтобы был проход по массиву
+      contextAndStubs[name] = `<div data-id="${component.id}"></div>`
+    });
+
+    const html = template(contextAndStubs);
+
+    const temp = document.createElement('template');
+    temp.innerHTML = html;
+
+    Object.entries(this.children).forEach(([_, component]) => {
+
+      const stub = temp.content.querySelector(`[data-id="${component.id}"]`);
+
+      if (!stub) {
+        return;
+      }
+
+      component.getContent()?.append(...Array.from(stub.childNodes));
+
+      stub.replaceWith(component.getContent()!);
+    });
+
+    return temp.content;
   }
 
   // Может переопределять пользователь, необязательно трогать
-  render() {
-    return ""
-   }
+  protected render(): DocumentFragment {
+    return new DocumentFragment;
+  };
 
   getContent() {
     return this.element;
-  }
+  };
 
-  _makePropsProxy(props: {}) {
+  _makePropsProxy(props: P) {
     const proxyProps = new Proxy(props, {
       get(target, prop: string) {
-        if (prop.startsWith('_')) {
-          throw new Error("Нет прав");
-        } else {
-          let value = target[prop];
-          return (typeof value === 'function') ? value.bind(target) : value; // (*)
-        }
+        const value = target[prop];
+        return typeof value === 'function' ? value.bind(target) : value;
       },
-      deleteProperty(target, prop) { // перехватываем удаление свойства
+      set(target, prop: string, value) {
+        const oldTarget = { ...target };
 
-        throw new Error("Нет прав");
+        target[prop as keyof P] = value;
+
+        this.eventBus().emit(Block.EVENTS.FLOW_CDU, oldTarget, target);
 
         return true;
-
       },
+      deleteProperty() {
+        throw new Error ('Access denied');
+      }
     })
-    // Можно и так передать this
-    // Такой способ больше не применяется с приходом ES6+
-    const self = this;
 
     return proxyProps;
-  }
+  };
 
-  _createDocumentElement(tagName) {
+  _createDocumentElement(tagName: string) {
     // Можно сделать метод, который через фрагменты в цикле создаёт сразу несколько блоков
     return document.createElement(tagName);
-  }
+  };
 
   show() {
     this.getContent()!.style.display = "block";
-  }
+  };
 
   hide() {
     this.getContent()!.style.display = "none";
-  }
+  };
 }
+
+export default Block

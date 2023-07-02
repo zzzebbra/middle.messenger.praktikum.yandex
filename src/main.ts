@@ -1,66 +1,62 @@
-import Handlebars from 'handlebars/runtime';
 import './style.scss';
-import button from './partials/button/button.hbs';
-import modalTitle from './partials/modalTitle/modalTitle.hbs';
-import profileTitle from './partials/profileTitle/profileTitle.hbs';
-import input from './partials/input/input.hbs';
-import link from './partials/link/link.hbs';
-import avatar from './partials/avatar/avatar.hbs';
-import profileText from './partials/profileText/profileText.hbs';
-import login from './templates/login/login.hbs';
-import registration from './templates/register/register.hbs';
-import profile from './templates/profile/profile.hbs';
-import profileChange from './templates/profile-change/profile-change.hbs';
-import passwordChange from './templates/password-change/password-change.hbs';
-import main from './templates/main/main.hbs';
-import notFound from './templates/404/404.hbs';
-import serverError from './templates/500/500.hbs';
 
-Handlebars.registerPartial('button', button);
-Handlebars.registerPartial('modalTitle', modalTitle);
-Handlebars.registerPartial('profileTitle', profileTitle);
-Handlebars.registerPartial('input', input);
-Handlebars.registerPartial('link', link);
-Handlebars.registerPartial('avatar', avatar);
-Handlebars.registerPartial('profileText', profileText);
+import { NotFoundPage } from "./templates/notFound/notFound";
+import { LoginPage } from './templates/login/login';
+import { RegisterPage } from './templates/register/register';
+import { ProfilePage } from './templates/profile/profile';
+import { ProfileChangePage } from './templates/profile-change/profileChange';
+import { PasswordChangePage } from './templates/password-change/passwordChange';
+import { ServerErrorPage } from './templates/serverError/serverError';
+import { linkToMain, modalTitleLogin, loginInputEnabled, passwordInput, buttonSubmitLogin, linkJoin, modalTitleJoin,
+  emailInputEnabled, nameInputEnabled, surnameInputEnabled, phoneInputEnabled, passwordRepeat, buttonJoin, linkToLogin,
+  avatar, profileTitle, profileEmail, profileChatname, profileLogin, profileName, profileSurname, profileMobile,
+  emailInputDisabled, loginInputDisabled, nameInputDisabled, surnameInputDisabled,  displayNameInputDisabled,
+  phoneInputDisabled, buttonArrow, dataChangeLink, passChangeLink, logoutLink, emailInputEnabledWithPlaceholder,
+  loginInputEnabledWithPlaceholder, namenInputEnabledWithPlaceholder, surnameInputEnabledWithPlaceholder,
+  displayNameInputEnabledWithPlaceholder, phoneInputEnabledWithPlaceholder, buttonSave, oldPassword, newPassword, newPasswordRepeat,
 
-document.addEventListener('DOMContentLoaded', () => {
-  const root = document.querySelector('#app');
+ } from '../utils/constants'
 
-  root!.innerHTML = '';
+const renderDOM = (page, props: Record<string, unknown>) => {
+  window.addEventListener('DOMContentLoaded', () => {
+    const root = document.querySelector('#app');
 
-  const mainPage = main();
-  const registrationPage = registration();
-  const loginPage = login();
-  const profilePage = profile();
-  const profileChangePage = profileChange();
-  const passwordChangePage = passwordChange();
-  const notFoundPage = notFound();
-  const serverErrorPage = serverError();
+    root!.innerHTML = '';
 
-  const getCurrentPage = () => {
-    switch (window.location.pathname) {
-      case '/login':
-        return root!.innerHTML = loginPage;
-      case '/join-us':
-        return root!.innerHTML = registrationPage;
-      case '/profile':
-        return root!.innerHTML = profilePage;
-      case '/data-change':
-        return root!.innerHTML = profileChangePage;
-      case '/pass-change':
-        return root!.innerHTML = passwordChangePage;
-      case '/404':
-        return root!.innerHTML = notFoundPage;
-      case '/500':
-        return root!.innerHTML = serverErrorPage;
+    const renderPage = new page({ title: '', ...props });
 
-      default:
-        return root!.innerHTML = mainPage;
-    }
+    root?.append(renderPage.getContent());
+
+    renderPage.dispatchComponentDidMount();
+  })
+}
+
+const getCurrentPage = () => {
+  switch (window.location.pathname) {
+    case '/login':
+      return renderDOM(LoginPage, { modalTitleLogin, loginInputEnabled, passwordInput, buttonSubmitLogin, linkJoin });
+    case '/join-us':
+      return renderDOM(RegisterPage, { modalTitleJoin, emailInputEnabled, loginInputEnabled, nameInputEnabled, surnameInputEnabled,
+        phoneInputEnabled, passwordInput, passwordRepeat, buttonJoin, linkToLogin });
+    case '/profile':
+      return renderDOM(ProfilePage, { avatar, profileTitle, profileEmail, profileLogin, profileName, profileSurname,
+        profileChatname, profileMobile, emailInputDisabled, loginInputDisabled, nameInputDisabled, surnameInputDisabled,
+        displayNameInputDisabled, phoneInputDisabled, buttonArrow, dataChangeLink, passChangeLink, logoutLink  });
+    case '/data-change':
+      return renderDOM(ProfileChangePage, { avatar, profileTitle, profileEmail, profileLogin, profileName, profileSurname,
+        profileChatname, profileMobile, emailInputEnabledWithPlaceholder, loginInputEnabledWithPlaceholder, namenInputEnabledWithPlaceholder,
+        surnameInputEnabledWithPlaceholder, displayNameInputEnabledWithPlaceholder, phoneInputEnabledWithPlaceholder, buttonSave });
+    case '/pass-change':
+      return renderDOM(PasswordChangePage, { avatar, profileTitle, profileEmail, profileLogin, profileName, buttonSave,
+        buttonArrow, oldPassword, newPassword, newPasswordRepeat });
+    case '/404':
+      return renderDOM(NotFoundPage, { linkToMain });
+    case '/500':
+      return renderDOM(ServerErrorPage, { linkToMain });
+
+    default:
+      return renderDOM(NotFoundPage, { linkToMain });
   }
+}
 
-  getCurrentPage();
-})
-
-
+getCurrentPage();
