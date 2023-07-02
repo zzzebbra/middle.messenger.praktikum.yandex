@@ -18,7 +18,7 @@ import { linkToMain, modalTitleLogin, loginInputEnabled, passwordInput, buttonSu
 
  } from '../utils/constants'
 
-const renderDOM = (page, props: Record<string, unknown>) => {
+const renderDOM = (page: any, props: Record<string, unknown>) => { // не могу использовать тут другой тип, т.к. возвращается из функций всё время разное
   window.addEventListener('DOMContentLoaded', () => {
     const root = document.querySelector('#app');
 
