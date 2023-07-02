@@ -5,6 +5,7 @@
   "scripts": {
     "dev": "vite",
     "stylelint": "stylelint \"**/*.scss\"",
+    "lint": "npx eslint ./src && tsc --noEmit",
     "build": "vite build",
     "preview": "vite preview",
     "start": "vite build && node server.js"

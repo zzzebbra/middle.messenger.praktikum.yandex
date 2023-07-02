@@ -1,14 +1,14 @@
 import Block from '../../../utils/Block';
 import profileTitle from './profileTitle.hbs';
 
-interface TProfileTitle {
+type TProfileTitle = {
   title: string
   events: {
     click: () => void
   }
-}
+};
 
-export class ProfileTitle extends Block<TProfileTitle> {
+export default class ProfileTitle extends Block {
   constructor(props: TProfileTitle) {
     super('div', props);
   }

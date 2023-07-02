@@ -1,15 +1,15 @@
 import Block from '../../../utils/Block';
 import image from './image.hbs';
 
-interface TImageProps {
+type TImageProps = {
   link: string
   extraImageClass?: string
   events: {
     click: () => void
   }
-}
+};
 
-export class Image extends Block<TImageProps> {
+export default class Image extends Block {
   constructor(props: TImageProps) {
     super('div', props);
   }

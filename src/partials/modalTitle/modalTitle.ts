@@ -1,14 +1,14 @@
 import Block from '../../../utils/Block';
 import modalTitle from './modalTitle.hbs';
 
-interface TModalTitleProps {
+type TModalTitleProps = {
   title: string
   events: {
     click: () => void
   }
-}
+};
 
-export class ModalTitle extends Block<TModalTitleProps> {
+export default class ModalTitle extends Block {
   constructor(props: TModalTitleProps) {
     super('div', props);
   }

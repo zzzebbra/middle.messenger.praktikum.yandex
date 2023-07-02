@@ -1,11 +1,11 @@
 import Block from '../../../utils/Block';
 import login from './login.hbs';
 
-interface TLoginPageProps {
+type TLoginPageProps = {
   title?: string
-}
+};
 
-export class LoginPage extends Block<TLoginPageProps> {
+export default class LoginPage extends Block {
   constructor(props: TLoginPageProps) {
     super('div', props);
   }

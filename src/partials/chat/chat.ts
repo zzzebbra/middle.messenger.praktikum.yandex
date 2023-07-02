@@ -1,16 +1,16 @@
 import Block from '../../../utils/Block';
 import chat from './chat.hbs';
 
-interface TChatProps {
+type TChatProps = {
   name: string
   avatar: string
   chatExtraClass?: string
   events: {
     click: (e: Event) => void
   }
-}
+};
 
-export class Chat extends Block<TChatProps> {
+export default class Chat extends Block {
   constructor(props: TChatProps) {
     super('div', props);
   }

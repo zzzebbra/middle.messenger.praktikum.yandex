@@ -1,16 +1,16 @@
 import Block from '../../../utils/Block';
 import link from './link.hbs';
 
-interface TLinkProps {
+type TLinkProps = {
   url: string
   urlName: string
   extraClass?: string
   events: {
     click: () => void
   }
-}
+};
 
-export class Link extends Block<TLinkProps> {
+export default class Link extends Block {
   constructor(props: TLinkProps) {
     super('div', props);
   }

@@ -1,7 +1,9 @@
 import { nanoid } from 'nanoid';
 import EventBus from './EventBus';
 
-class Block<P extends Record<string, unknown> = any> {
+export type P = Record<string, unknown>;
+
+class Block {
   static EVENTS = {
     INIT: 'init',
     FLOW_CDM: 'flow:component-did-mount',
@@ -188,7 +190,7 @@ class Block<P extends Record<string, unknown> = any> {
 
         // eslint-disable-next-line no-param-reassign
         target[prop as keyof P] = value;
-
+        // @ts-expect-error
         this.eventBus().emit(Block.EVENTS.FLOW_CDU, oldTarget, target);
 
         return true;

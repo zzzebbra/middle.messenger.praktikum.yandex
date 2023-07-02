@@ -1,7 +1,7 @@
 import Block from '../../../utils/Block';
 import input from './input.hbs';
 
-interface TInputProps {
+type TInputProps = {
   labelName?: string
   type: string
   name: string
@@ -11,9 +11,9 @@ interface TInputProps {
   validationPattern?: string
   errorText?: string
   events: Record<string, (e: Event) => void>
-}
+};
 
-export class Input extends Block<TInputProps> {
+export default class Input extends Block {
   constructor(props: TInputProps) {
     super('div', props);
   }

@@ -1,11 +1,11 @@
 import Block from '../../../utils/Block';
 import notFound from './notFound.hbs';
 
-interface TNotFoundPageProps {
+type TNotFoundPageProps = {
   title?: string
-}
+};
 
-export class NotFoundPage extends Block<TNotFoundPageProps> {
+export default class NotFoundPage extends Block {
   constructor(props: TNotFoundPageProps) {
     super('div', props);
   }
