@@ -1,11 +1,11 @@
 import Block from '../../../utils/Block';
 import profile from './profile.hbs';
 
-interface TProfilePageProps {
+type TProfilePageProps = {
   title?: string
-}
+};
 
-export class ProfilePage extends Block<TProfilePageProps> {
+export default class ProfilePage extends Block {
   constructor(props: TProfilePageProps) {
     super('div', props);
   }

@@ -1,13 +1,13 @@
 import './style.scss';
 
-import { NotFoundPage } from './templates/notFound/notFound';
-import { LoginPage } from './templates/login/login';
-import { RegisterPage } from './templates/register/register';
-import { ProfilePage } from './templates/profile/profile';
-import { ProfileChangePage } from './templates/profile-change/profileChange';
-import { PasswordChangePage } from './templates/password-change/passwordChange';
-import { ServerErrorPage } from './templates/serverError/serverError';
-import { ChatWindowPage } from './templates/chatWindow/chatWindow';
+import NotFoundPage from './templates/notFound/notFound';
+import LoginPage from './templates/login/login';
+import RegisterPage from './templates/register/register';
+import ProfilePage from './templates/profile/profile';
+import ProfileChangePage from './templates/profile-change/profileChange';
+import PasswordChangePage from './templates/password-change/passwordChange';
+import ServerErrorPage from './templates/serverError/serverError';
+import ChatWindowPage from './templates/chatWindow/chatWindow';
 import {
   linkToMain, modalTitleLogin, loginInputEnabled, passwordInput, buttonSubmitLogin, linkJoin, modalTitleJoin,
   emailInputEnabled, nameInputEnabled, surnameInputEnabled, phoneInputEnabled, passwordRepeat, buttonJoin, linkToLogin,

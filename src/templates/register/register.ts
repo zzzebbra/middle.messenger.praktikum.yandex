@@ -1,11 +1,11 @@
 import Block from '../../../utils/Block';
 import register from './register.hbs';
 
-interface TRegisterPageProps {
+type TRegisterPageProps = {
   title?: string
-}
+};
 
-export class RegisterPage extends Block<TRegisterPageProps> {
+export default class RegisterPage extends Block {
   constructor(props: TRegisterPageProps) {
     super('div', props);
   }

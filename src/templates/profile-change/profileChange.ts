@@ -1,16 +1,11 @@
 import Block from '../../../utils/Block';
-import { Button } from '../../partials/button/button';
-import { Input } from '../../partials/input/input';
-import { Avatar } from '../../partials/avatar/avatar';
-import { ProfileTitle } from '../../partials/profileTitle/profileTitle';
-import { ProfileText } from '../../partials/profileText/profileText';
 import profileChange from './profileChange.hbs';
 
-interface TProfileChangeProps {
+type TProfileChangeProps = {
   title?: string
-}
+};
 
-export class ProfileChangePage extends Block<TProfileChangeProps> {
+export default class ProfileChangePage extends Block {
   constructor(props: TProfileChangeProps) {
     super('div', props);
   }

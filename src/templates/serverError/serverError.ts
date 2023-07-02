@@ -1,11 +1,11 @@
 import Block from '../../../utils/Block';
 import serverError from './serverError.hbs';
 
-interface TServerErrorPageProps {
+type TServerErrorPageProps = {
   title?: string
-}
+};
 
-export class ServerErrorPage extends Block<TServerErrorPageProps> {
+export default class ServerErrorPage extends Block {
   constructor(props: TServerErrorPageProps) {
     super('div', props);
   }
