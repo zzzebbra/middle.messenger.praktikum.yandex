@@ -1,0 +1,69 @@
+.chatWindow {
+  display: flex;
+  flex-direction: row;
+
+  &__chats {
+    display: flex;
+    flex-direction: column;
+    max-width: 310px;
+    width: 100%;
+    background: #FBFBFB;
+    padding-top: 21px;
+  }
+
+  &__chats-header {
+    display: flex;
+    flex-direction: column;
+    gap: 23px;
+    border-bottom: 1px solid #EAEAEA;
+  }
+
+  &__chats-header-link {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    gap: 8px;
+    align-items: center;
+    max-width: 50px;
+    width: 100%;
+    margin-right: 10px;
+    margin-left: auto;
+  }
+
+  &__image {
+    background: url('../../images/arrow-profile.png');
+    background-repeat: no-repeat;
+    background-position: 50% 50%;
+    width: 8px;
+    height: 4px;
+    background-size: contain;
+    padding: 0;
+  }
+
+  &__link {
+    color: #999;
+    text-align: right;
+    font-size: 12px;
+    line-height: 12px;
+    margin-top: 0;
+  }
+
+  &__search {
+    max-width: 290px;
+    width: 100%;
+    height: 32px;
+    border-radius: 5px;
+    background: #EFEFEF;
+    color: #000;
+    border-bottom: none;
+    padding: 0;
+    margin: 0 auto;
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+
+  &__search::placeholder {
+    color: #999;
+    text-align: center;
+  }
+}
