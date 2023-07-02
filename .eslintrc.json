@@ -4,7 +4,6 @@
         "es2021": true
     },
     "extends": [
-        "standard-with-typescript",
         "plugin:react/recommended",
         "airbnb",
         "airbnb-typescript"
@@ -17,5 +16,10 @@
     "plugins": [
     ],
     "rules": {
+      "max-len": ["error", { "code": 140 }],
+      "no-underscore-dangle": ["error", { "allowAfterThis": true }],
+      "class-methods-use-this": ["off"],
+      "@typescript-eslint/no-non-null-assertion": "off",
+      "@typescript-eslint/explicit-function-return-type": "off"
     }
 }

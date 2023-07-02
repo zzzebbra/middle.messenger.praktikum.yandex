@@ -15,17 +15,20 @@ import {
   emailInputDisabled, loginInputDisabled, nameInputDisabled, surnameInputDisabled, displayNameInputDisabled,
   phoneInputDisabled, buttonArrow, dataChangeLink, passChangeLink, logoutLink, emailInputEnabledWithPlaceholder,
   loginInputEnabledWithPlaceholder, nameInputEnabledWithPlaceholder, surnameInputEnabledWithPlaceholder,
-  displayNameInputEnabledWithPlaceholder, phoneInputEnabledWithPlaceholder, buttonSave, oldPassword, newPassword, newPasswordRepeat, linkToProfile, arrowProfile, searchChatsInput, chatAvatar, chatRecName, chatMessage,
+  displayNameInputEnabledWithPlaceholder, phoneInputEnabledWithPlaceholder,
+  buttonSave, oldPassword, newPassword, newPasswordRepeat,
+  linkToProfile, arrowProfile, searchChatsInput, chatAvatar, chatRecName, chatMessage,
 
 } from '../utils/constants';
 
-const renderDOM = (page: any, props: Record<string, unknown>) => { // не могу использовать тут другой тип, т.к. возвращается из функций всё время разное
+// не могу использовать тут другой тип, т.к. возвращается из функций всё время разное
+const renderDOM = (Page: any, props: Record<string, unknown>): void => {
   window.addEventListener('DOMContentLoaded', () => {
     const root = document.querySelector('#app');
 
     root!.innerHTML = '';
 
-    const renderPage = new page({ title: '', ...props });
+    const renderPage = new Page({ title: '', ...props });
 
     root?.append(renderPage.getContent());
 
@@ -33,7 +36,7 @@ const renderDOM = (page: any, props: Record<string, unknown>) => { // не мо�
   });
 };
 
-const getCurrentPage = () => {
+const getCurrentPage = (): void => {
   switch (window.location.pathname) {
     case '/login':
     { renderDOM(LoginPage, {

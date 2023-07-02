@@ -8,12 +8,12 @@ interface TAvatarProps {
   }
 }
 
-export class Avatar extends Block<TAvatarProps> {
+export default class Avatar extends Block<TAvatarProps> {
   constructor(props: TAvatarProps) {
     super('div', props);
   }
 
-  render() {
+  render(): DocumentFragment {
     return this.compile(avatar, this.props);
   }
 }

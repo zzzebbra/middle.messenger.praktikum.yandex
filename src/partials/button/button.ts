@@ -10,7 +10,7 @@ interface TButtonProps {
   }
 }
 
-export class Button extends Block<TButtonProps> {
+export default class Button extends Block<TButtonProps> {
   constructor(props: TButtonProps) {
     super('div', props);
   }
