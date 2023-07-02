@@ -1,6 +1,6 @@
 import './style.scss';
 
-import { NotFoundPage } from "./templates/notFound/notFound";
+import { NotFoundPage } from './templates/notFound/notFound';
 import { LoginPage } from './templates/login/login';
 import { RegisterPage } from './templates/register/register';
 import { ProfilePage } from './templates/profile/profile';
@@ -8,15 +8,16 @@ import { ProfileChangePage } from './templates/profile-change/profileChange';
 import { PasswordChangePage } from './templates/password-change/passwordChange';
 import { ServerErrorPage } from './templates/serverError/serverError';
 import { ChatWindowPage } from './templates/chatWindow/chatWindow';
-import { linkToMain, modalTitleLogin, loginInputEnabled, passwordInput, buttonSubmitLogin, linkJoin, modalTitleJoin,
+import {
+  linkToMain, modalTitleLogin, loginInputEnabled, passwordInput, buttonSubmitLogin, linkJoin, modalTitleJoin,
   emailInputEnabled, nameInputEnabled, surnameInputEnabled, phoneInputEnabled, passwordRepeat, buttonJoin, linkToLogin,
   avatar, profileTitle, profileEmail, profileChatname, profileLogin, profileName, profileSurname, profileMobile,
-  emailInputDisabled, loginInputDisabled, nameInputDisabled, surnameInputDisabled,  displayNameInputDisabled,
+  emailInputDisabled, loginInputDisabled, nameInputDisabled, surnameInputDisabled, displayNameInputDisabled,
   phoneInputDisabled, buttonArrow, dataChangeLink, passChangeLink, logoutLink, emailInputEnabledWithPlaceholder,
   loginInputEnabledWithPlaceholder, nameInputEnabledWithPlaceholder, surnameInputEnabledWithPlaceholder,
   displayNameInputEnabledWithPlaceholder, phoneInputEnabledWithPlaceholder, buttonSave, oldPassword, newPassword, newPasswordRepeat, linkToProfile, arrowProfile, searchChatsInput, chatAvatar, chatRecName, chatMessage,
 
- } from '../utils/constants'
+} from '../utils/constants';
 
 const renderDOM = (page: any, props: Record<string, unknown>) => { // не могу использовать тут другой тип, т.к. возвращается из функций всё время разное
   window.addEventListener('DOMContentLoaded', () => {
@@ -29,36 +30,95 @@ const renderDOM = (page: any, props: Record<string, unknown>) => { // не мо�
     root?.append(renderPage.getContent());
 
     renderPage.dispatchComponentDidMount();
-  })
-}
+  });
+};
 
 const getCurrentPage = () => {
   switch (window.location.pathname) {
     case '/login':
-      return renderDOM(LoginPage, { modalTitleLogin, loginInputEnabled, passwordInput, buttonSubmitLogin, linkJoin });
+    { renderDOM(LoginPage, {
+      modalTitleLogin, loginInputEnabled, passwordInput, buttonSubmitLogin, linkJoin,
+    }); return; }
     case '/join-us':
-      return renderDOM(RegisterPage, { modalTitleJoin, emailInputEnabled, loginInputEnabled, nameInputEnabled, surnameInputEnabled,
-        phoneInputEnabled, passwordInput, passwordRepeat, buttonJoin, linkToLogin });
+    { renderDOM(RegisterPage, {
+      modalTitleJoin,
+      emailInputEnabled,
+      loginInputEnabled,
+      nameInputEnabled,
+      surnameInputEnabled,
+      phoneInputEnabled,
+      passwordInput,
+      passwordRepeat,
+      buttonJoin,
+      linkToLogin,
+    }); return; }
     case '/profile':
-      return renderDOM(ProfilePage, { avatar, profileTitle, profileEmail, profileLogin, profileName, profileSurname,
-        profileChatname, profileMobile, emailInputDisabled, loginInputDisabled, nameInputDisabled, surnameInputDisabled,
-        displayNameInputDisabled, phoneInputDisabled, buttonArrow, dataChangeLink, passChangeLink, logoutLink  });
+    { renderDOM(ProfilePage, {
+      avatar,
+      profileTitle,
+      profileEmail,
+      profileLogin,
+      profileName,
+      profileSurname,
+      profileChatname,
+      profileMobile,
+      emailInputDisabled,
+      loginInputDisabled,
+      nameInputDisabled,
+      surnameInputDisabled,
+      displayNameInputDisabled,
+      phoneInputDisabled,
+      buttonArrow,
+      dataChangeLink,
+      passChangeLink,
+      logoutLink,
+    }); return; }
     case '/data-change':
-      return renderDOM(ProfileChangePage, { avatar, profileTitle, profileEmail, profileLogin, profileName, profileSurname,
-        profileChatname, profileMobile, emailInputEnabledWithPlaceholder, loginInputEnabledWithPlaceholder, nameInputEnabledWithPlaceholder,
-        surnameInputEnabledWithPlaceholder, displayNameInputEnabledWithPlaceholder, phoneInputEnabledWithPlaceholder, buttonSave });
+    { renderDOM(ProfileChangePage, {
+      avatar,
+      profileTitle,
+      profileEmail,
+      profileLogin,
+      profileName,
+      profileSurname,
+      profileChatname,
+      profileMobile,
+      emailInputEnabledWithPlaceholder,
+      loginInputEnabledWithPlaceholder,
+      nameInputEnabledWithPlaceholder,
+      surnameInputEnabledWithPlaceholder,
+      displayNameInputEnabledWithPlaceholder,
+      phoneInputEnabledWithPlaceholder,
+      buttonSave,
+    }); return; }
     case '/pass-change':
-      return renderDOM(PasswordChangePage, { avatar, profileTitle, profileEmail, profileLogin, profileName, buttonSave,
-        buttonArrow, oldPassword, newPassword, newPasswordRepeat });
+    { renderDOM(PasswordChangePage, {
+      avatar,
+      profileTitle,
+      profileEmail,
+      profileLogin,
+      profileName,
+      buttonSave,
+      buttonArrow,
+      oldPassword,
+      newPassword,
+      newPasswordRepeat,
+    }); return; }
     case '/404':
-      return renderDOM(NotFoundPage, { linkToMain });
+    { renderDOM(NotFoundPage, { linkToMain }); return; }
     case '/500':
-      return renderDOM(ServerErrorPage, { linkToMain });
+    { renderDOM(ServerErrorPage, { linkToMain }); return; }
 
     default:
-      return renderDOM(ChatWindowPage, { linkToProfile, arrowProfile, searchChatsInput, chatAvatar,
-        chatMessage, chatRecName});
+    { renderDOM(ChatWindowPage, {
+      linkToProfile,
+      arrowProfile,
+      searchChatsInput,
+      chatAvatar,
+      chatMessage,
+      chatRecName,
+    }); }
   }
-}
+};
 
 getCurrentPage();

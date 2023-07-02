@@ -1,10 +1,10 @@
-import Block from "../../../utils/Block";
+import Block from '../../../utils/Block';
 import profileText from './profileText.hbs';
 
-type TProfileText = {
-  text: string,
+interface TProfileText {
+  text: string
   events: {
-    click: () => void;
+    click: () => void
   }
 }
 
@@ -14,6 +14,6 @@ export class ProfileText extends Block<TProfileText> {
   }
 
   render() {
-    return this.compile(profileText, this.props)
+    return this.compile(profileText, this.props);
   }
 }

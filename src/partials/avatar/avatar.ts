@@ -1,10 +1,10 @@
 import Block from '../../../utils/Block';
 import avatar from './avatar.hbs';
 
-type TAvatarProps = {
-  link: string,
+interface TAvatarProps {
+  link: string
   events: {
-    click: () => void;
+    click: () => void
   }
 }
 
@@ -14,6 +14,6 @@ export class Avatar extends Block<TAvatarProps> {
   }
 
   render() {
-    return this.compile(avatar, this.props)
+    return this.compile(avatar, this.props);
   }
 }

@@ -1,12 +1,12 @@
-import Block from "../../../utils/Block";
+import Block from '../../../utils/Block';
 import link from './link.hbs';
 
-type TLinkProps = {
-  url: string,
-  urlName: string,
-  extraClass?: string,
+interface TLinkProps {
+  url: string
+  urlName: string
+  extraClass?: string
   events: {
-    click: () => void;
+    click: () => void
   }
 }
 
@@ -16,6 +16,6 @@ export class Link extends Block<TLinkProps> {
   }
 
   render() {
-    return this.compile(link, this.props)
+    return this.compile(link, this.props);
   }
 }

@@ -1,10 +1,10 @@
-import Block from "../../../utils/Block";
+import Block from '../../../utils/Block';
 import modalTitle from './modalTitle.hbs';
 
-type TModalTitleProps = {
-  title: string,
+interface TModalTitleProps {
+  title: string
   events: {
-    click: () => void;
+    click: () => void
   }
 }
 
@@ -14,6 +14,6 @@ export class ModalTitle extends Block<TModalTitleProps> {
   }
 
   render() {
-    return this.compile(modalTitle, this.props)
+    return this.compile(modalTitle, this.props);
   }
 }

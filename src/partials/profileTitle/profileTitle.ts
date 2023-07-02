@@ -1,10 +1,10 @@
-import Block from "../../../utils/Block";
+import Block from '../../../utils/Block';
 import profileTitle from './profileTitle.hbs';
 
-type TProfileTitle = {
-  title: string,
+interface TProfileTitle {
+  title: string
   events: {
-    click: () => void;
+    click: () => void
   }
 }
 
@@ -14,6 +14,6 @@ export class ProfileTitle extends Block<TProfileTitle> {
   }
 
   render() {
-    return this.compile(profileTitle, this.props)
+    return this.compile(profileTitle, this.props);
   }
 }

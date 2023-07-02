@@ -1,16 +1,16 @@
-import Block from "../../../utils/Block";
+import Block from '../../../utils/Block';
 import input from './input.hbs';
 
-type TInputProps = {
-  labelName?: string,
-  type: string,
-  name: string,
-  placeholder?: string,
-  extraClass?: string,
-  disabled?: string,
-  validationPattern?: string,
-  errorText?: string;
-  events: Record<string,(e:Event)=> void>
+interface TInputProps {
+  labelName?: string
+  type: string
+  name: string
+  placeholder?: string
+  extraClass?: string
+  disabled?: string
+  validationPattern?: string
+  errorText?: string
+  events: Record<string, (e: Event) => void>
 }
 
 export class Input extends Block<TInputProps> {
@@ -19,6 +19,6 @@ export class Input extends Block<TInputProps> {
   }
 
   render() {
-    return this.compile(input, this.props)
+    return this.compile(input, this.props);
   }
 }

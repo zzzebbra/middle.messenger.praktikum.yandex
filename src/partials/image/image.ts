@@ -1,11 +1,11 @@
 import Block from '../../../utils/Block';
 import image from './image.hbs';
 
-type TImageProps = {
-  link: string,
-  extraImageClass?: string,
+interface TImageProps {
+  link: string
+  extraImageClass?: string
   events: {
-    click: () => void;
+    click: () => void
   }
 }
 
@@ -15,6 +15,6 @@ export class Image extends Block<TImageProps> {
   }
 
   render() {
-    return this.compile(image, this.props)
+    return this.compile(image, this.props);
   }
 }

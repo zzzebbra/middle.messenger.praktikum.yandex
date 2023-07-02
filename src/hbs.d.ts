@@ -1,5 +1,6 @@
 declare module '*.hbs' {
-  import { TemplateDelegate } from 'handlebars';
+  import { type TemplateDelegate } from 'handlebars';
+
   const template: TemplateDelegate;
   export default template;
 }
