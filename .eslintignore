@@ -1,0 +1,3 @@
+*.config.js
+server.js
+vite-plagin-handlebars-precompile.js

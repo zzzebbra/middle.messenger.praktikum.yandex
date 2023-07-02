@@ -1,11 +1,11 @@
 import Block from '../../../utils/Block';
 import passwordChange from './passwordChange.hbs';
 
-interface TPasswordChangePageProps {
+type TPasswordChangePageProps = {
   title?: string
-}
+};
 
-export class PasswordChangePage extends Block<TPasswordChangePageProps> {
+export default class PasswordChangePage extends Block {
   constructor(props: TPasswordChangePageProps) {
     super('div', props);
   }
