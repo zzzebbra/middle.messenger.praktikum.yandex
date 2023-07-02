@@ -8,9 +8,9 @@ type TInputProps = {
   placeholder?: string,
   extraClass?: string,
   disabled?: string,
-  events: {
-    click: () => void;
-  }
+  validationPattern?: string,
+  errorText?: string;
+  events: Record<string,(e:Event)=> void>
 }
 
 export class Input extends Block<TInputProps> {

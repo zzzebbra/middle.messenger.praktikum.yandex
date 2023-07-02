@@ -31,4 +31,13 @@
     line-height: 9px;
     color: #999;
   }
+  &__error {
+    color: red;
+    display: none;
+    margin: 5px 0 0;
+    font-size: 10px;
+    &_visible{
+    display: block;
+    }
+  }
 }

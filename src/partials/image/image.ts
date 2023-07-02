@@ -3,6 +3,7 @@ import image from './image.hbs';
 
 type TImageProps = {
   link: string,
+  extraImageClass?: string,
   events: {
     click: () => void;
   }

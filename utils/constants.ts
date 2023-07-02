@@ -6,6 +6,10 @@ import { Avatar } from '../src/partials/avatar/avatar';
 import { ProfileTitle } from "../src/partials/profileTitle/profileTitle";
 import { ProfileText } from "../src/partials/profileText/profileText";
 import { Image } from '../src/partials/image/image';
+import { formValidate, inputValidation } from './validation';
+
+import { emailRegexp, nameRegexp, surnameRegexp, loginRegexp, passwordRegexp,
+  phoneRegexp, messageRegexp, searchRegexp } from './regexps';
 
 export const linkToMain = new Link({
   url: '/',
@@ -26,8 +30,13 @@ export const loginInputEnabled = new Input({
   labelName: 'Login',
   type: 'text',
   name: 'login',
+  validationPattern: loginRegexp,
+  errorText: "от 3 до 20 символов, латиница, может содержать цифры, но не состоять из них, без пробелов, без спецсимволов (допустимы дефис и нижнее подчёркивание)",
   events: {
-    click: () => console.log('login'),
+    focusout: (evt: Event) => {
+      const input = evt.target as HTMLInputElement;
+      inputValidation(input, 'input__error_visible');
+    }
   }
 })
 
@@ -35,8 +44,13 @@ export const passwordInput = new Input({
   labelName: 'Password',
   type: 'password',
   name: 'password',
+  validationPattern: passwordRegexp,
+  errorText: "от 8 до 40 символов, обязательно хотя бы одна заглавная буква и цифра",
   events: {
-    click: () => console.log('pass'),
+    focusout: (evt: Event) => {
+      const input = evt.target as HTMLInputElement;
+      inputValidation(input, 'input__error_visible');
+    }
   }
 })
 
@@ -45,9 +59,19 @@ export const buttonSubmitLogin = new Button({
   type: 'submit',
   buttonExtraClass: 'button_blue button_mr-t-160',
   events: {
-    click: (e: Event) => {
-      e.preventDefault();
-      console.log('sign in');
+    click: (evt: Event) => {
+      evt.preventDefault();
+
+      const target = evt.target as HTMLButtonElement;
+      const form = target?.closest('form')!;
+
+      const { isFormValid, formData } = formValidate(form, 'input__error_visible');
+
+      if (!isFormValid) {
+        console.log('Error');
+      } else {
+        console.log(formData);
+      };
     }
   }
 })
@@ -72,26 +96,41 @@ export const emailInputEnabled = new Input({
   labelName: 'Email',
   type: 'email',
   name: 'email',
+  validationPattern: emailRegexp,
+  errorText: "Not a valid email",
   events: {
-    click: () => console.log('email'),
+    focusout: (evt: Event) => {
+      const input = evt.target as HTMLInputElement;
+      inputValidation(input, 'input__error_visible');
+    }
   }
 })
 
 export const nameInputEnabled = new Input({
   labelName: 'Name',
   type: 'text',
-  name: 'firstName',
+  name: 'first_name',
+  validationPattern: nameRegexp,
+  errorText: "Should be latin or cyrillic, first letter uppercase, no space, numbers and special characters",
   events: {
-    click: () => console.log('name'),
+    focusout: (evt: Event) => {
+      const input = evt.target as HTMLInputElement;
+      inputValidation(input, 'input__error_visible');
+    }
   }
 })
 
 export const surnameInputEnabled = new Input({
   labelName: 'Surname',
   type: 'text',
-  name: 'surname',
+  name: 'second_name',
+  validationPattern: surnameRegexp,
+  errorText: "Should be latin or cyrillic, first letter uppercase, no space, numbers and special characters",
   events: {
-    click: () => console.log('surname'),
+    focusout: (evt: Event) => {
+      const input = evt.target as HTMLInputElement;
+      inputValidation(input, 'input__error_visible');
+    }
   }
 })
 
@@ -99,8 +138,13 @@ export const phoneInputEnabled = new Input({
   labelName: 'Mobile phone',
   type: 'tel',
   name: 'phone',
+  validationPattern: phoneRegexp,
+  errorText: "Only numbers, start from '+', 10-15 symbols length",
   events: {
-    click: () => console.log('phone'),
+    focusout: (evt: Event) => {
+      const input = evt.target as HTMLInputElement;
+      inputValidation(input, 'input__error_visible');
+    }
   }
 })
 
@@ -108,8 +152,13 @@ export const passwordRepeat = new Input({
   labelName: 'Password (repeat)',
   type: 'password',
   name: 'password-repeat',
+  validationPattern: passwordRegexp,
+  errorText: "от 8 до 40 символов, обязательно хотя бы одна заглавная буква и цифра",
   events: {
-    click: () => console.log('pass-rep'),
+    focusout: (evt: Event) => {
+      const input = evt.target as HTMLInputElement;
+      inputValidation(input, 'input__error_visible');
+    }
   }
 })
 
@@ -192,8 +241,13 @@ export const emailInputDisabled = new Input({
   extraClass: "input_disabled",
   disabled: 'disabled',
   placeholder: "pochta@gmail.com",
+  validationPattern: emailRegexp,
+  errorText: "Not a valid email",
   events: {
-    click: () => console.log('email'),
+    focusout: (evt: Event) => {
+      const input = evt.target as HTMLInputElement;
+      inputValidation(input, 'input__error_visible');
+    }
   }
 })
 
@@ -203,30 +257,45 @@ export const loginInputDisabled = new Input({
   extraClass: "input_disabled",
   disabled: 'disabled',
   placeholder: "ivanivanov",
+  validationPattern: loginRegexp,
+  errorText: "от 3 до 20 символов, латиница, может содержать цифры, но не состоять из них, без пробелов, без спецсимволов (допустимы дефис и нижнее подчёркивание)",
   events: {
-    click: () => console.log('login'),
+    focusout: (evt: Event) => {
+      const input = evt.target as HTMLInputElement;
+      inputValidation(input, 'input__error_visible');
+    }
   }
 })
 
 export const nameInputDisabled = new Input({
   type: 'text',
-  name: 'firstName',
+  name: 'first_name',
   extraClass: "input_disabled",
   disabled: 'disabled',
   placeholder: "Ivan",
+  validationPattern: nameRegexp,
+  errorText: "Should be latin or cyrillic, first letter uppercase, no space, numbers and special characters",
   events: {
-    click: () => console.log('name'),
+    focusout: (evt: Event) => {
+      const input = evt.target as HTMLInputElement;
+      inputValidation(input, 'input__error_visible');
+    }
   }
 })
 
 export const surnameInputDisabled = new Input({
   type: 'text',
-  name: 'surName',
+  name: 'second_name',
   extraClass: "input_disabled",
   disabled: 'disabled',
   placeholder: "Ivanov",
+  validationPattern: nameRegexp,
+  errorText: "Should be latin or cyrillic, first letter uppercase, no space, numbers and special characters",
   events: {
-    click: () => console.log('surname'),
+    focusout: (evt: Event) => {
+      const input = evt.target as HTMLInputElement;
+      inputValidation(input, 'input__error_visible');
+    }
   }
 })
 
@@ -236,8 +305,13 @@ export const displayNameInputDisabled = new Input({
   extraClass: "input_disabled",
   disabled: 'disabled',
   placeholder: "Ivan",
+  validationPattern: nameRegexp,
+  errorText: "Should be latin or cyrillic, first letter uppercase, no space, numbers and special characters",
   events: {
-    click: () => console.log('displayName'),
+    focusout: (evt: Event) => {
+      const input = evt.target as HTMLInputElement;
+      inputValidation(input, 'input__error_visible');
+    }
   }
 })
 
@@ -247,8 +321,13 @@ export const phoneInputDisabled = new Input({
   extraClass: "input_disabled",
   disabled: 'disabled',
   placeholder: "+7(909)9673030",
+  validationPattern: phoneRegexp,
+  errorText: "Only numbers, start from '+', 10-15 symbols length",
   events: {
-    click: () => console.log('+7(909)9673030'),
+    focusout: (evt: Event) => {
+      const input = evt.target as HTMLInputElement;
+      inputValidation(input, 'input__error_visible');
+    }
   }
 })
 
@@ -292,8 +371,13 @@ export const emailInputEnabledWithPlaceholder = new Input({
   name: 'email',
   extraClass: "input_disabled",
   placeholder: "pochta@gmail.com",
+  validationPattern: emailRegexp,
+  errorText: "Not a valid email",
   events: {
-    click: () => console.log('email'),
+    focusout: (evt: Event) => {
+      const input = evt.target as HTMLInputElement;
+      inputValidation(input, 'input__error_visible');
+    }
   }
 })
 
@@ -302,28 +386,43 @@ export const loginInputEnabledWithPlaceholder = new Input({
   name: 'login',
   extraClass: "input_disabled",
   placeholder: "ivanivanov",
+  validationPattern: loginRegexp,
+  errorText: "от 3 до 20 символов, латиница, может содержать цифры, но не состоять из них, без пробелов, без спецсимволов (допустимы дефис и нижнее подчёркивание)",
   events: {
-    click: () => console.log('login'),
+    focusout: (evt: Event) => {
+      const input = evt.target as HTMLInputElement;
+      inputValidation(input, 'input__error_visible');
+    }
   }
 })
 
-export const namenInputEnabledWithPlaceholder = new Input({
+export const nameInputEnabledWithPlaceholder = new Input({
   type: 'text',
-  name: 'firstName',
+  name: 'first_name',
   extraClass: "input_disabled",
   placeholder: "Ivan",
+  validationPattern: nameRegexp,
+  errorText: "Should be latin or cyrillic, first letter uppercase, no space, numbers and special characters",
   events: {
-    click: () => console.log('name'),
+    focusout: (evt: Event) => {
+      const input = evt.target as HTMLInputElement;
+      inputValidation(input, 'input__error_visible');
+    }
   }
 })
 
 export const surnameInputEnabledWithPlaceholder = new Input({
   type: 'text',
-  name: 'surName',
+  name: 'second_name',
   extraClass: "input_disabled",
   placeholder: "Ivanov",
+  validationPattern: surnameRegexp,
+  errorText: "Should be latin or cyrillic, first letter uppercase, no space, numbers and special characters",
   events: {
-    click: () => console.log('surname'),
+    focusout: (evt: Event) => {
+      const input = evt.target as HTMLInputElement;
+      inputValidation(input, 'input__error_visible');
+    }
   }
 })
 
@@ -332,8 +431,13 @@ export const displayNameInputEnabledWithPlaceholder = new Input({
   name: 'displayName',
   extraClass: "input_disabled",
   placeholder: "Ivan",
+  validationPattern: nameRegexp,
+  errorText: "Should be latin or cyrillic, first letter uppercase, no space, numbers and special characters",
   events: {
-    click: () => console.log('displayName'),
+    focusout: (evt: Event) => {
+      const input = evt.target as HTMLInputElement;
+      inputValidation(input, 'input__error_visible');
+    }
   }
 })
 
@@ -342,8 +446,13 @@ export const phoneInputEnabledWithPlaceholder = new Input({
   name: 'phone',
   extraClass: "input_disabled",
   placeholder: "+7(909)9673030",
+  validationPattern: phoneRegexp,
+  errorText: "Only numbers, start from '+', 10-15 symbols length",
   events: {
-    click: () => console.log('+7(909)9673030'),
+    focusout: (evt: Event) => {
+      const input = evt.target as HTMLInputElement;
+      inputValidation(input, 'input__error_visible');
+    }
   }
 })
 
@@ -360,8 +469,13 @@ export const oldPassword = new Input({
   type: 'password',
   name: 'oldPassword',
   extraClass: "input_disabled",
+  validationPattern: passwordRegexp,
+  errorText: "от 8 до 40 символов, обязательно хотя бы одна заглавная буква и цифра",
   events: {
-    click: () => console.log('oldPassword'),
+    focusout: (evt: Event) => {
+      const input = evt.target as HTMLInputElement;
+      inputValidation(input, 'input__error_visible');
+    }
   }
 })
 
@@ -369,8 +483,13 @@ export const newPassword = new Input({
   type: 'password',
   name: 'newPassword',
   extraClass: "input_disabled",
+  validationPattern: passwordRegexp,
+  errorText: "от 8 до 40 символов, обязательно хотя бы одна заглавная буква и цифра",
   events: {
-    click: () => console.log('pass'),
+    focusout: (evt: Event) => {
+      const input = evt.target as HTMLInputElement;
+      inputValidation(input, 'input__error_visible');
+    }
   }
 })
 
@@ -378,8 +497,13 @@ export const newPasswordRepeat = new Input({
   type: 'password',
   name: 'newPasswordRepeat',
   extraClass: "input_disabled",
+  validationPattern: passwordRegexp,
+  errorText: "от 8 до 40 символов, обязательно хотя бы одна заглавная буква и цифра",
   events: {
-    click: () => console.log('pass-rep'),
+    focusout: (evt: Event) => {
+      const input = evt.target as HTMLInputElement;
+      inputValidation(input, 'input__error_visible');
+    }
   }
 })
 
@@ -405,14 +529,34 @@ export const searchChatsInput = new Input({
   name: 'search',
   extraClass: "chatWindow__search",
   placeholder: "Search",
+  validationPattern: searchRegexp,
+  errorText: "",
   events: {
-    click: () => console.log('search'),
+    focusout: (evt: Event) => {
+      const input = evt.target as HTMLInputElement;
+      inputValidation(input, 'input__error_visible');
+    }
   }
 })
 
-export const image = new Image({
+export const chatAvatar = new Image({
   link: '/src/images/avatar.png',
+  extraImageClass: 'chatWindow_img',
   events: {
     click: () => console.log('avatar'),
+  }
+})
+
+export const chatRecName = new ProfileText({
+  text: 'Andrew',
+  events: {
+    click: () => console.log('profileEmail'),
+  }
+})
+
+export const chatMessage = new ProfileText({
+  text: 'Друзья, у меня для вас особенный выпуск новостей!...',
+  events: {
+    click: () => console.log('profileEmail'),
   }
 })
