@@ -9,7 +9,7 @@ import { Image } from '../src/partials/image/image';
 import { formValidate, inputValidation } from './validation';
 
 import { emailRegexp, nameRegexp, surnameRegexp, loginRegexp, passwordRegexp,
-  phoneRegexp, messageRegexp, searchRegexp } from './regexps';
+  phoneRegexp, searchRegexp } from './regexps';
 
 export const linkToMain = new Link({
   url: '/',
