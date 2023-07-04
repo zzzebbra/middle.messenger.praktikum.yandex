@@ -152,7 +152,7 @@ export const phoneInputEnabled = new Input({
 export const passwordRepeat = new Input({
   labelName: 'Password (repeat)',
   type: 'password',
-  name: 'password-repeat',
+  name: 'password',
   validationPattern: passwordRegexp,
   errorText: 'от 8 до 40 символов, обязательно хотя бы одна заглавная буква и цифра',
   events: {
@@ -302,7 +302,7 @@ export const surnameInputDisabled = new Input({
 
 export const displayNameInputDisabled = new Input({
   type: 'text',
-  name: 'displayName',
+  name: 'display_name',
   extraClass: 'input_disabled',
   disabled: 'disabled',
   placeholder: 'Ivan',
@@ -429,7 +429,7 @@ export const surnameInputEnabledWithPlaceholder = new Input({
 
 export const displayNameInputEnabledWithPlaceholder = new Input({
   type: 'text',
-  name: 'displayName',
+  name: 'display_name',
   extraClass: 'input_disabled',
   placeholder: 'Ivan',
   validationPattern: nameRegexp,
@@ -468,7 +468,7 @@ export const buttonSave = new Button({
 
 export const oldPassword = new Input({
   type: 'password',
-  name: 'oldPassword',
+  name: 'password',
   extraClass: 'input_disabled',
   validationPattern: passwordRegexp,
   errorText: 'от 8 до 40 символов, обязательно хотя бы одна заглавная буква и цифра',
@@ -482,7 +482,7 @@ export const oldPassword = new Input({
 
 export const newPassword = new Input({
   type: 'password',
-  name: 'newPassword',
+  name: 'password',
   extraClass: 'input_disabled',
   validationPattern: passwordRegexp,
   errorText: 'от 8 до 40 символов, обязательно хотя бы одна заглавная буква и цифра',
@@ -496,7 +496,7 @@ export const newPassword = new Input({
 
 export const newPasswordRepeat = new Input({
   type: 'password',
-  name: 'newPasswordRepeat',
+  name: 'password',
   extraClass: 'input_disabled',
   validationPattern: passwordRegexp,
   errorText: 'от 8 до 40 символов, обязательно хотя бы одна заглавная буква и цифра',

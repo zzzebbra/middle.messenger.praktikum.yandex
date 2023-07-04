@@ -21,6 +21,7 @@
       "class-methods-use-this": ["off"],
       "@typescript-eslint/no-non-null-assertion": "off",
       "@typescript-eslint/explicit-function-return-type": "off",
-      "no-console": "off"
+      "no-console": "off",
+      "linebreak-style": 0
     }
 }
