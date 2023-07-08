@@ -8,8 +8,9 @@
 @import './templates/profile/profile.scss';
 @import './partials/avatar/avatar.scss';
 @import './partials/profileText/profileText.scss';
-@import './templates/404/404.scss';
-@import './templates/500/500.scss';
+@import './templates/notFound/notFound.scss';
+@import './templates/serverError/serverError.scss';
+@import './templates//chatWindow/chatWindow.scss';
 
 body {
   margin: 0;
