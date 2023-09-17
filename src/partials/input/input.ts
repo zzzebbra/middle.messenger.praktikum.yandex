@@ -1,4 +1,4 @@
-import Block from '../../../utils/Block';
+import Block from '../../../Block';
 import input from './input.hbs';
 
 type TInputProps = {

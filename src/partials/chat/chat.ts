@@ -1,4 +1,4 @@
-import Block from '../../../utils/Block';
+import Block from '../../../Block';
 import chat from './chat.hbs';
 
 type TChatProps = {

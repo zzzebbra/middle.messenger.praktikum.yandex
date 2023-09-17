@@ -1,5 +1,5 @@
 import { nanoid } from 'nanoid';
-import EventBus from './EventBus';
+import EventBus from './src/utils/EventBus';
 
 export type P = Record<string, unknown>;
 

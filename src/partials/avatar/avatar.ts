@@ -1,4 +1,4 @@
-import Block from '../../../utils/Block';
+import Block from '../../../Block';
 import avatar from './avatar.hbs';
 
 type TAvatarProps = {

@@ -1,4 +1,4 @@
-import Block from '../../../utils/Block';
+import Block from '../../../Block';
 import profileChange from './profileChange.hbs';
 
 type TProfileChangeProps = {

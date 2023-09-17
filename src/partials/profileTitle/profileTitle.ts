@@ -1,4 +1,4 @@
-import Block from '../../../utils/Block';
+import Block from '../../../Block';
 import profileTitle from './profileTitle.hbs';
 
 type TProfileTitle = {

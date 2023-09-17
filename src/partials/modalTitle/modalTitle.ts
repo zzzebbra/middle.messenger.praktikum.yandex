@@ -1,4 +1,4 @@
-import Block from '../../../utils/Block';
+import Block from '../../../Block';
 import modalTitle from './modalTitle.hbs';
 
 type TModalTitleProps = {

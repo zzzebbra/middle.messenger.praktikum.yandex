@@ -1,17 +1,20 @@
-import Link from '../src/partials/link/link';
-import Button from '../src/partials/button/button';
-import Input from '../src/partials/input/input';
-import ModalTitle from '../src/partials/modalTitle/modalTitle';
-import Avatar from '../src/partials/avatar/avatar';
-import ProfileTitle from '../src/partials/profileTitle/profileTitle';
-import ProfileText from '../src/partials/profileText/profileText';
-import Image from '../src/partials/image/image';
+import Link from '../partials/link/link';
+import Button from '../partials/button/button';
+import Input from '../partials/input/input';
+import ModalTitle from '../partials/modalTitle/modalTitle';
+import Avatar from '../partials/avatar/avatar';
+import ProfileTitle from '../partials/profileTitle/profileTitle';
+import ProfileText from '../partials/profileText/profileText';
+import Image from '../partials/image/image';
 import { formValidate, inputValidation } from './validation';
+import Router from './Router';
 
 import {
   emailRegexp, nameRegexp, surnameRegexp, loginRegexp, passwordRegexp,
   phoneRegexp, searchRegexp,
 } from './regexps';
+
+const navigation = new Router('#app');
 
 export const linkToMain = new Link({
   url: '/',
@@ -79,7 +82,7 @@ export const buttonSubmitLogin = new Button({
 });
 
 export const linkJoin = new Link({
-  url: '/join-us',
+  url: '/sign-up',
   urlName: 'Join us',
   events: {
     click: () => console.log('go to login'),
@@ -173,7 +176,7 @@ export const buttonJoin = new Button({
 });
 
 export const linkToLogin = new Link({
-  url: '/login',
+  url: '/',
   urlName: 'Login',
   events: {
     click: () => console.log('go to login'),
@@ -336,7 +339,8 @@ export const buttonArrow = new Button({
   type: 'button',
   buttonExtraClass: 'button_arrow',
   events: {
-    click: () => console.log('go back'),
+    // click: () => console.log('go back'),
+    click: () => navigation.back(),
   },
 });
 
@@ -359,7 +363,7 @@ export const passChangeLink = new Link({
 });
 
 export const logoutLink = new Link({
-  url: '/login',
+  url: '/',
   urlName: 'Logout',
   extraClass: 'profile__link  profile__link_logout',
   events: {
@@ -462,7 +466,8 @@ export const buttonSave = new Button({
   buttonExtraClass: 'button button_blue',
   buttonText: 'Save changes',
   events: {
-    click: () => console.log('go back'),
+    // click: () => console.log('go back'),
+    click: () => navigation.back(),
   },
 });
 
@@ -509,7 +514,7 @@ export const newPasswordRepeat = new Input({
 });
 
 export const linkToProfile = new Link({
-  url: '/profile',
+  url: '/settings',
   urlName: 'Profile',
   extraClass: 'chatWindow__link',
   events: {
@@ -521,7 +526,8 @@ export const arrowProfile = new Button({
   type: 'button',
   buttonExtraClass: 'chatWindow__image',
   events: {
-    click: () => console.log('go back'),
+    // click: () => console.log('go back'),
+    click: () => navigation.back(),
   },
 });
 

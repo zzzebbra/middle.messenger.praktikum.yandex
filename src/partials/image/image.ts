@@ -1,4 +1,4 @@
-import Block from '../../../utils/Block';
+import Block from '../../../Block';
 import image from './image.hbs';
 
 type TImageProps = {

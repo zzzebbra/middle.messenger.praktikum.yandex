@@ -21,7 +21,7 @@
   },
   "include": [
     "./src/"
-  ],
+, "src/utils", "Block.ts"  ],
   "baseUrl": ".",
   "types": [],
   "paths": {

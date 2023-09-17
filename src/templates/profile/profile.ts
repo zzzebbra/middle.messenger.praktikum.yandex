@@ -1,4 +1,4 @@
-import Block from '../../../utils/Block';
+import Block from '../../../Block';
 import profile from './profile.hbs';
 
 type TProfilePageProps = {
